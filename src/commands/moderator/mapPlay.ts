@@ -1,6 +1,5 @@
 import {SubCommand} from "../../interfaces/Command";
 import {logError} from "../../loggers";
-import tokens from "../../config/tokens";
 import GameModel from "../../database/models/GameModel";
 import {Collection, SlashCommandSubcommandBuilder} from "discord.js";
 import discordTokens from "../../config/discordTokens";

@@ -4,7 +4,6 @@ import {logError} from "../../../loggers";
 import {Collection} from "discord.js";
 import {commandPermission} from "../../../utility/commandPermission";
 import {onSubCommand} from "../../../events/onSubCommand";
-import tokens from "../../../config/tokens";
 import {fiveVFive} from "./fiveVFive";
 import discordTokens from "../../../config/discordTokens";
 

@@ -2,7 +2,6 @@ import {Command, SubCommand} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {Collection} from "discord.js";
 import {logError} from "../../loggers";
-import tokens from "../../config/tokens";
 import {actions} from "./actions";
 import {adjustMMR} from "./adjustMMR";
 import {cooldown} from "./cooldown";

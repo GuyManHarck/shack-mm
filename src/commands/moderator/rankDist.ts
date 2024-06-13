@@ -1,6 +1,5 @@
 import {SubCommand} from "../../interfaces/Command";
 import {logError} from "../../loggers";
-import tokens from "../../config/tokens";
 import StatsModel from "../../database/models/StatsModel";
 import {Collection, SlashCommandSubcommandBuilder} from "discord.js";
 import {getRank} from "../../utility/ranking";

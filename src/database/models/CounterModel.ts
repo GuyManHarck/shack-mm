@@ -1,4 +1,4 @@
-import { Document, model, Schema } from "mongoose";
+import {Document, model, Schema} from "mongoose";
 
 export interface CounterInt extends Document {
     _id: string

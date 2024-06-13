@@ -4,7 +4,6 @@ import {logError} from "../../loggers";
 import {getUserByUser} from "../../modules/getters/getUser";
 import WarnModel from "../../database/models/WarnModel";
 import {warningEmbeds} from "../../embeds/statsEmbed";
-import tokens from "../../config/tokens";
 import {SlashCommandSubcommandBuilder} from "discord.js";
 import discordTokens from "../../config/discordTokens";
 

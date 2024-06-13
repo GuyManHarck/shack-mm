@@ -1,6 +1,5 @@
 import {SubCommand} from "../../interfaces/Command";
 import {SlashCommandSubcommandBuilder, SlashCommandUserOption} from "discord.js";
-import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {getUserByUser} from "../../modules/getters/getUser";
 import {getStats} from "../../modules/getters/getStats";

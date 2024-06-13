@@ -1,4 +1,4 @@
-import { Client } from "discord.js";
+import {Client} from "discord.js";
 import {Data} from "../data";
 import {logInfo} from "../loggers";
 import {connectDatabase} from "../database/connectDatabase";

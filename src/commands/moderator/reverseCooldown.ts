@@ -1,6 +1,5 @@
 import {SubCommand} from "../../interfaces/Command";
 import {cdType, reason, userOption} from "../../utility/options";
-import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {createActionUser} from "../../modules/constructors/createAction";
 import {Actions} from "../../database/models/ActionModel";

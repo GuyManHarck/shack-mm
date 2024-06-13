@@ -1,5 +1,4 @@
 import {Client, Colors, EmbedBuilder, EmbedField, Interaction, TextChannel} from "discord.js";
-import tokens from './config/tokens';
 import discordTokens from "./config/discordTokens";
 
 

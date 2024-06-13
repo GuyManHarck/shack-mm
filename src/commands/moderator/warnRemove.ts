@@ -1,7 +1,6 @@
 import {SubCommand} from "../../interfaces/Command";
 import {SlashCommandStringOption, SlashCommandSubcommandBuilder} from "discord.js";
 import {logError} from "../../loggers";
-import tokens from "../../config/tokens";
 import WarnModel, {WarnInt} from "../../database/models/WarnModel";
 import discordTokens from "../../config/discordTokens";
 

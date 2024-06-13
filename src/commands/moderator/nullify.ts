@@ -1,6 +1,5 @@
 import {SubCommand} from "../../interfaces/Command";
 import {reason} from "../../utility/options";
-import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {createAction} from "../../modules/constructors/createAction";
 import {Actions} from "../../database/models/ActionModel";

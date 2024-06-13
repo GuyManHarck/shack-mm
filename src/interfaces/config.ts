@@ -1,5 +1,4 @@
 import {Regions} from "../database/models/UserModel";
-import messages from "../messages.json";
 
 export interface DiscordTokensInt {
     ActiveGamesChannel: string; // Channel that displays number of active games
@@ -45,7 +44,7 @@ export interface TokensInt {
     ApplyLates: boolean; // Toggle whether lates should be applied
     BotKey: string; // Key for bot to post to the website
     BotToken: string; // Token provided by discord to allow bot to access the gateway
-    ClientId: string; // Id of the bot/client
+    ClientId: string; // ID of the bot/client
     DB_URI: string; // URI of the database to connect to
     Ranks: {
         name: string,

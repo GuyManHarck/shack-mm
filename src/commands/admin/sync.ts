@@ -1,10 +1,10 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Command } from "../../interfaces/Command";
+import {SlashCommandBuilder} from "@discordjs/builders";
+import {Command} from "../../interfaces/Command";
 import {logError} from "../../loggers";
-import { REST } from "@discordjs/rest";
+import {REST} from "@discordjs/rest";
 import tokens from "../../config/tokens";
 import {CommandList} from "../_CommandList";
-import { Routes } from "discord-api-types/v9";
+import {Routes} from "discord-api-types/v9";
 import discordTokens from "../../config/discordTokens";
 
 export const sync: Command = {

@@ -1,6 +1,5 @@
-import {ActionRowBuilder} from "discord.js";
+import {ActionRowBuilder, MessageActionRowComponentBuilder} from "discord.js";
 import {accept} from "../buttons/match/accept";
-import {MessageActionRowComponentBuilder} from "discord.js";
 import {missing} from "../buttons/match/missing";
 
 export const acceptView = () => {

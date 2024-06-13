@@ -1,7 +1,6 @@
 import {SubCommand} from "../../interfaces/Command";
 import {reason, userOption} from "../../utility/options";
 import {logError} from "../../loggers";
-import tokens from "../../config/tokens";
 import moment from "moment";
 import {getUserByUser} from "../../modules/getters/getUser";
 import {grammaticalTime} from "../../utility/grammatical";

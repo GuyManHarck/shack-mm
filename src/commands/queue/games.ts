@@ -1,6 +1,5 @@
 import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
-import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {gameEmbed} from "../../embeds/matchEmbeds";
 import discordTokens from "../../config/discordTokens";

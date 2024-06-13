@@ -2,7 +2,6 @@ import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {userOption} from "../../utility/options";
 import {logError} from "../../loggers";
-import tokens from "../../config/tokens";
 import * as discordTranscripts from "discord-html-transcripts";
 import discordTokens from "../../config/discordTokens";
 

@@ -5,7 +5,6 @@ import {logError} from "../../loggers";
 import {getUserByUser} from "../../modules/getters/getUser";
 import warnModel from "../../database/models/WarnModel";
 import moment from "moment";
-import tokens from "../../config/tokens";
 import discordTokens from "../../config/discordTokens";
 
 export const warn: SubCommand = {

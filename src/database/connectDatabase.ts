@@ -1,4 +1,4 @@
-import { connect } from "mongoose";
+import {connect} from "mongoose";
 import tokens from '../config/tokens';
 import {Client} from "discord.js";
 import {logInfo} from "../loggers";

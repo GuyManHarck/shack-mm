@@ -2,7 +2,6 @@ import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {SlashCommandStringOption} from "discord.js";
 import {logError} from "../../loggers";
-import tokens from "../../config/tokens";
 import discordTokens from "../../config/discordTokens";
 
 export const echo: Command = {

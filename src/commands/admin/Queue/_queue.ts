@@ -7,7 +7,6 @@ import {info} from "./info";
 import {lock} from "./lock";
 import {reCalc} from "./reCalc";
 import {remove} from "./remove";
-import tokens from "../../../config/tokens";
 import discordTokens from "../../../config/discordTokens";
 
 const subCommandListTemp: SubCommand[] = [clear, info, lock, reCalc, remove]

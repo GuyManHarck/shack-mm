@@ -1,5 +1,4 @@
 import {OverwriteResolvable, PermissionsBitField, Role} from "discord.js";
-import tokens from "../config/tokens";
 import discordTokens from "../config/discordTokens";
 
 

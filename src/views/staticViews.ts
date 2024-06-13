@@ -1,5 +1,5 @@
 import {ActionRowBuilder, MessageActionRowComponentBuilder} from "discord.js";
-import {readyFILL15, readyFILL30, readyFILL60, readyFILL120} from "../buttons/queue/SND/ReadyFILL";
+import {readyFILL120, readyFILL15, readyFILL30, readyFILL60} from "../buttons/queue/SND/ReadyFILL";
 import {signup} from "../buttons/signup";
 import {unready} from "../buttons/queue/SND/unready";
 import {p2pToggle} from "../buttons/p2pToggle";

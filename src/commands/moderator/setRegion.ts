@@ -2,7 +2,6 @@ import {SubCommand} from "../../interfaces/Command";
 import {userOption} from "../../utility/options";
 import {SlashCommandStringOption, SlashCommandSubcommandBuilder} from "discord.js";
 import {logError} from "../../loggers";
-import tokens from "../../config/tokens";
 import {getUserByUser} from "../../modules/getters/getUser";
 import {Regions} from "../../database/models/UserModel";
 import {updateUser} from "../../modules/updaters/updateUser";

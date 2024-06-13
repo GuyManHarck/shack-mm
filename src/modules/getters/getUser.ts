@@ -1,6 +1,6 @@
 import {GuildMember, PartialGuildMember, User} from "discord.js";
 import UserModel from "../../database/models/UserModel";
-import {createUser, createBlankUser} from "../constructors/createUser";
+import {createBlankUser, createUser} from "../constructors/createUser";
 import {ObjectId} from "mongoose";
 import {Data} from "../../data";
 

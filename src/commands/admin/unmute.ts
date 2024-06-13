@@ -1,18 +1,16 @@
-import { Command } from "../../interfaces/Command";
-import { SlashCommandBuilder } from "discord.js";
-import { userOption } from "../../utility/options";
-import tokens from "../../config/tokens";
-import { logError } from "../../loggers";
-import { getUserByUser } from "../../modules/getters/getUser";
-import { updateUser } from "../../modules/updaters/updateUser";
-import {Client, EmbedBuilder, TextChannel} from "discord.js";
+import {Command} from "../../interfaces/Command";
+import {EmbedBuilder, SlashCommandBuilder, TextChannel} from "discord.js";
+import {userOption} from "../../utility/options";
+import {logError} from "../../loggers";
+import {getUserByUser} from "../../modules/getters/getUser";
+import {updateUser} from "../../modules/updaters/updateUser";
 import moment from "moment";
 import discordTokens from "../../config/discordTokens";
 
 export const unmute: Command = {
     data: new SlashCommandBuilder()
         .setName('unmute')
-        .setDescription("Unmutes a player")
+        .setDescription("Un-mutes a player")
         .addUserOption(userOption("User to unmute")),
     run: async (interaction, data) => {
         try {
@@ -26,7 +24,7 @@ export const unmute: Command = {
             await interaction.reply({ephemeral: true, content: `<@${user.id}> has been un-muted`});
             const channel = await interaction.client.channels.fetch(discordTokens.ModeratorLogChannel) as TextChannel;
             const embed = new EmbedBuilder();
-            embed.setTitle(`User ${user.id} has been unmuted`);
+            embed.setTitle(`User ${user.id} has been un-muted`);
             embed.setDescription(`<@${user.id}> un-muted by <@${interaction.user.id}>`);
             await channel.send({embeds: [embed.toJSON()]});
         } catch (e) {

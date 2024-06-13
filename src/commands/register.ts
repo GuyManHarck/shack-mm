@@ -4,7 +4,6 @@ import {SlashCommandStringOption} from "discord.js";
 import {logError} from "../loggers";
 import {getUserByUser} from "../modules/getters/getUser";
 import {updateUser} from "../modules/updaters/updateUser";
-import tokens from "../config/tokens";
 import discordTokens from "../config/discordTokens";
 
 export const register: Command = {

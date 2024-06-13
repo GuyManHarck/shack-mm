@@ -1,7 +1,6 @@
 import {SubCommand} from "../../interfaces/Command";
 import {SlashCommandStringOption, SlashCommandSubcommandBuilder} from "discord.js";
 import {logError} from "../../loggers";
-import tokens from "../../config/tokens";
 import UserModel, {UserInt} from "../../database/models/UserModel";
 import {getEditDistance} from "../../utility/grammatical";
 import discordTokens from "../../config/discordTokens";

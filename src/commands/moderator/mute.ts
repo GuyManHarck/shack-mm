@@ -1,7 +1,6 @@
 import {SubCommand} from "../../interfaces/Command";
-import { SlashCommandSubcommandBuilder, SlashCommandStringOption } from "discord.js";
+import {SlashCommandStringOption, SlashCommandSubcommandBuilder} from "discord.js";
 import {timeOption, timeScales, userOption} from "../../utility/options";
-import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {getUserByUser} from "../../modules/getters/getUser";
 import moment from "moment";

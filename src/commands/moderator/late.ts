@@ -1,7 +1,6 @@
 import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {userOption} from "../../utility/options";
-import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {autoLate} from "../../utility/punishment";
 import {getUserByUser} from "../../modules/getters/getUser";

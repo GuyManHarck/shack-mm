@@ -1,6 +1,5 @@
 import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
-import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import UserModel from "../../database/models/UserModel";
 import {updateUser} from "../../modules/updaters/updateUser";

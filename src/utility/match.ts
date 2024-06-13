@@ -1,7 +1,6 @@
 import {getUserByUser} from "../modules/getters/getUser";
 import {ButtonInteraction, ChatInputCommandInteraction, Client, EmbedBuilder, TextChannel} from "discord.js";
 import {Data} from "../data";
-import tokens from "../config/tokens";
 import discordTokens from "../config/discordTokens";
 
 
