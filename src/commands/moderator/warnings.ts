@@ -4,8 +4,9 @@ import {logError} from "../../loggers";
 import {getUserByUser} from "../../modules/getters/getUser";
 import WarnModel from "../../database/models/WarnModel";
 import {warningEmbeds} from "../../embeds/statsEmbed";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {SlashCommandSubcommandBuilder} from "discord.js";
+import discordTokens from "../../config/discordTokens";
 
 export const warnings: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -22,5 +23,5 @@ export const warnings: SubCommand = {
         }
     },
     name: "warnings",
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

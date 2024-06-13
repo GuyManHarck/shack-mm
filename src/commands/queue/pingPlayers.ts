@@ -2,8 +2,9 @@ import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {logError} from "../../loggers";
 import moment from "moment";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {grammaticalTime} from "../../utility/grammatical";
+import discordTokens from "../../config/discordTokens";
 
 export const pingPlayers: Command = {
     data: new SlashCommandBuilder()
@@ -12,8 +13,8 @@ export const pingPlayers: Command = {
     run: async (interaction, data) => {
         try {
             if (moment().unix() >= data.nextPing) {
-                await interaction.reply({ephemeral: false, content: `<@&${tokens.PingToPlayRole}> players are looking for a match`, allowedMentions: {roles: [tokens.PingToPlayRole]}});
-                data.nextPing = moment().unix() + tokens.PingToPlayTime;
+                await interaction.reply({ephemeral: false, content: `<@&${discordTokens.PingToPlayRole}> players are looking for a match`, allowedMentions: {roles: [discordTokens.PingToPlayRole]}});
+                data.nextPing = moment().unix() + tokens.PingTime;
             } else {
                 await interaction.reply({ephemeral: true, content: `You cannot ping players for another ${grammaticalTime(data.nextPing - moment().unix())}`})
             }
@@ -22,5 +23,5 @@ export const pingPlayers: Command = {
         }
     },
     name: 'ping_players',
-    allowedChannels: [tokens.SNDChannel],
+    allowedChannels: [discordTokens.QueueChannel],
 }

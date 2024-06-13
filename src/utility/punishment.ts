@@ -2,12 +2,12 @@ import {ObjectId} from "mongoose";
 import {getUserById} from "../modules/getters/getUser";
 import moment from "moment/moment";
 import {Guild, TextChannel} from "discord.js";
-import tokens from "../tokens";
 import {updateUser} from "../modules/updaters/updateUser";
 import {grammaticalTime} from "./grammatical";
 import ActionModel, {Actions} from "../database/models/ActionModel";
 import {Data} from "../data";
 import {UserInt} from "../database/models/UserModel";
+import discordTokens from "../config/discordTokens";
 
 export const autoLate = async (id: ObjectId, data: Data) => {
     const user = await getUserById(id, data);
@@ -69,7 +69,7 @@ export const abandon = async (userId: ObjectId, discordId: string, guild: Guild,
         actionData: `User was punished for ${grammaticalTime(user.banUntil - now)}\nWith a ban counter of ${user.banCounterAbandon} after the punishment`,
     })
 
-    const channel = await guild.channels.fetch(tokens.GeneralChannel) as TextChannel;
+    const channel = await guild.channels.fetch(discordTokens.GeneralChannel) as TextChannel;
     if (acceptFail) {
         await channel.send(`<@${user.id}> has failed to accept a match and been given a cooldown of ${grammaticalTime(user.banUntil - now)}`);
     } else {

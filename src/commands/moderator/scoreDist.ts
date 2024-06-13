@@ -2,8 +2,9 @@ import {SubCommand} from "../../interfaces/Command";
 import {logError} from "../../loggers";
 import {getGames} from "../../modules/getters/getGame";
 import {getScoreDistGraph} from "../../utility/graph";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {SlashCommandSubcommandBuilder} from "discord.js";
+import discordTokens from "../../config/discordTokens";
 
 export const scoreDist: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -42,5 +43,5 @@ export const scoreDist: SubCommand = {
         }
     },
     name: 'score_distribution',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

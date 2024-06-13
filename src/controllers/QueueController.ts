@@ -8,12 +8,13 @@ import {grammaticalList, grammaticalTime} from "../utility/grammatical";
 import mongoose, {ObjectId} from "mongoose";
 import {GameController} from "./GameController";
 import {UserInt} from "../database/models/UserModel";
-import tokens from "../tokens";
+import tokens from "../config/tokens";
 import {updateUser} from "../modules/updaters/updateUser";
 import {logReady, logUnready} from "../utility/match";
 import {getUserById} from "../modules/getters/getUser";
 import {shuffleArray} from "../utility/makeTeams";
 import {logWarn} from "../loggers";
+import discordTokens from "../config/discordTokens";
 
 interface PingMeUser {
     id: string;
@@ -74,7 +75,7 @@ export class QueueController {
                 server = this.data.getServer(game.server.name ?? "none");
             }
             const newGame = new GameController(new mongoose.Types.ObjectId(game.id) as any as ObjectId,
-                this.client, await this.client.guilds.fetch(tokens.GuildID), game.matchNumber, [], [], "SND",
+                this.client, await this.client.guilds.fetch(discordTokens.GuildId), game.matchNumber, [], [], "SND",
                 game.scoreLimit, game.allBans, this.data, server);
             newGame.load(game);
             this.activeGames.push(newGame);
@@ -131,7 +132,7 @@ export class QueueController {
             name: user.name,
             region: user.region,
         });
-        const channel = await this.client.channels.fetch(tokens.SNDChannel) as TextChannel;
+        const channel = await this.client.channels.fetch(discordTokens.QueueChannel) as TextChannel;
         await channel.send(`${user.name} has readied up for ${time} minutes`);
         await logReady(user.id, `${this.queueId}`, time, this.client);
         return {
@@ -143,7 +144,7 @@ export class QueueController {
     async tick() {
         this.inQueue = removeDuplicates(this.inQueue);
         const time = moment().unix()
-        const guild = this.client.guilds.cache.get(tokens.GuildID)!
+        const guild = this.client.guilds.cache.get(discordTokens.GuildId)!
         for (let user of this.inQueue) {
             if (user.queueExpire < time) {
                 this.removeUser(user.dbId, true);
@@ -214,7 +215,7 @@ export class QueueController {
                 }
             }
         }
-        const queueChannel = await guild.channels.fetch(tokens.SNDChannel) as TextChannel;
+        const queueChannel = await guild.channels.fetch(discordTokens.QueueChannel) as TextChannel;
         for (let user of this.pingMe.values()) {
             if (this.inQueueNumber() >= user.inQueue && !user.pinged) {
                 await queueChannel.send(`<@${user.id}> there are in ${user.inQueue} queue`);
@@ -247,7 +248,7 @@ export class QueueController {
         this.inQueue.forEach( async (user, index) => {
             if (String(user.dbId) == String(userId)) {
                 this.inQueue.splice(index, 1);
-                const channel = await this.client.channels.fetch(tokens.SNDChannel) as TextChannel;
+                const channel = await this.client.channels.fetch(discordTokens.QueueChannel) as TextChannel;
                 if (!noMessage) {
                     await channel.send(`${user.name} has unreadied`);
                 }

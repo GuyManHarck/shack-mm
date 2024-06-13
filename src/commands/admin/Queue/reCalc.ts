@@ -7,9 +7,10 @@ import {getUserById} from "../../../modules/getters/getUser";
 import {processMMR} from "../../../utility/processMMR";
 import {GameUser} from "../../../interfaces/Game";
 import {updateGame} from "../../../modules/updaters/updateGame";
-import tokens from "../../../tokens";
+import tokens from "../../../config/tokens";
 import StatsModel from "../../../database/models/StatsModel";
 import {Regions} from "../../../database/models/UserModel";
+import discordTokens from "../../../config/discordTokens";
 
 export const reCalc: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -60,5 +61,5 @@ export const reCalc: SubCommand = {
         }
     },
     name: 're_calc',
-    allowedUsers: [tokens.Parl],
+    allowedUsers: [discordTokens.BotOwner],
 }

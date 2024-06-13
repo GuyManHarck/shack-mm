@@ -2,8 +2,8 @@ import {StatsInt} from "../database/models/StatsModel";
 import {APIEmbed, EmbedBuilder, User} from "discord.js";
 import {UserInt} from "../database/models/UserModel";
 import {getRank} from "../utility/ranking";
-import tokens from "../tokens";
 import {WarnInt} from "../database/models/WarnModel";
+import discordTokens from "../config/discordTokens";
 
 export const statsEmbed = (stats: StatsInt, user: UserInt, name: string, imageURL: string): APIEmbed => {
     const embed = new EmbedBuilder();
@@ -37,11 +37,11 @@ export const statsEmbed = (stats: StatsInt, user: UserInt, name: string, imageUR
 
     for (let game of games) {
         if (game == 'win') {
-            history += (tokens.WinEmoji);
+            history += (discordTokens.Emoji.Win);
         } else if (game == 'loss') {
-            history += (tokens.LossEmoji);
+            history += (discordTokens.Emoji.Loss);
         } else {
-            history += (tokens.DrawEmoji);
+            history += (discordTokens.Emoji.Draw);
         }
     }
 

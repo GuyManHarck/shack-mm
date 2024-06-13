@@ -1,8 +1,9 @@
 import {SubCommand} from "../../interfaces/Command";
 import {SlashCommandStringOption, SlashCommandSubcommandBuilder} from "discord.js";
 import {logError} from "../../loggers";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import WarnModel, {WarnInt} from "../../database/models/WarnModel";
+import discordTokens from "../../config/discordTokens";
 
 const getWarnById = async (id: string): Promise<WarnInt | null> => {
     return WarnModel.findOne({_id: id}).exec();
@@ -31,5 +32,5 @@ export const warnRemove: SubCommand = {
         }
     },
     name: 'remove_warn',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

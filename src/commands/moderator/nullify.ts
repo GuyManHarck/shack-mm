@@ -1,10 +1,11 @@
 import {SubCommand} from "../../interfaces/Command";
 import {reason} from "../../utility/options";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {createAction} from "../../modules/constructors/createAction";
 import {Actions} from "../../database/models/ActionModel";
 import {SlashCommandSubcommandBuilder} from "discord.js";
+import discordTokens from "../../config/discordTokens";
 
 export const nullify: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -26,5 +27,5 @@ export const nullify: SubCommand = {
         }
     },
     name: 'nullify',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

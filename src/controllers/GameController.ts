@@ -6,7 +6,7 @@ import {processMMR} from "../utility/processMMR";
 import {updateGame} from "../modules/updaters/updateGame";
 import {getGuildMember} from "../utility/discordGetters";
 import {getAcceptPerms, getMatchPerms} from "../utility/channelPerms";
-import tokens from "../tokens";
+import tokens from "../config/tokens";
 import {acceptView} from "../views/acceptView";
 import {abandon, autoLate} from "../utility/punishment";
 import {voteA1, voteA2, voteB1, voteB2} from "../views/voteViews";
@@ -25,12 +25,13 @@ import {updateUser} from "../modules/updaters/updateUser";
 import {logAccept, logScoreSubmit} from "../utility/match";
 import {GameServer} from "../server/server";
 import axios from "axios";
+import discordTokens from "../config/discordTokens";
 
 
 const logVotes = async (votes: Collection<string, string[]>,
                         orderedMapList: {"1": string, "2": string, "3": string, "4": string, "5": string, "6": string, "7": string} | {"1": string, "2": string},
                         voteLabel: string, gameUsers: GameUser[], client: Client) => {
-    const channel = await client.channels.fetch(tokens.GameLogChannel) as TextChannel;
+    const channel = await client.channels.fetch(discordTokens.GameLogChannel) as TextChannel;
 
     let userVotes: {
         userId: string;
@@ -498,7 +499,7 @@ export class GameController {
                 type: ChannelType.GuildText,
                 permissionOverwrites: getAcceptPerms(matchRole),
                 position: 0,
-                parent: tokens.MatchCategory,
+                parent: discordTokens.MatchCategory,
                 reason: 'Create channel for match accept'
             });
 
@@ -843,7 +844,7 @@ export class GameController {
                     type: ChannelType.GuildText,
                     permissionOverwrites: getMatchPerms(teamARole),
                     position: 0,
-                    parent: tokens.MatchCategory,
+                    parent: discordTokens.MatchCategory,
                     reason: 'Create channel for team a'
                 }
             );
@@ -854,7 +855,7 @@ export class GameController {
                     type: ChannelType.GuildText,
                     permissionOverwrites: getMatchPerms(teamBRole),
                     position: 0,
-                    parent: tokens.MatchCategory,
+                    parent: discordTokens.MatchCategory,
                     reason: 'Create channel for team a'
                 }
             );
@@ -965,7 +966,7 @@ export class GameController {
                 type: ChannelType.GuildText,
                 permissionOverwrites: getMatchPerms(this.matchRoleId),
                 position: 0,
-                parent: tokens.MatchCategory,
+                parent: discordTokens.MatchCategory,
                 reason: 'Create final match channel',
             });
             this.finalChannelId = finalChannel.id;
@@ -1331,7 +1332,7 @@ export class GameController {
     async sendScoreEmbed() {
         this.cleanedUp = true
         const game = await getGameById(this.id);
-        const channel = await this.guild.channels.fetch(tokens.SNDScoreChannel) as TextChannel;
+        const channel = await this.guild.channels.fetch(discordTokens.ScoreChannel) as TextChannel;
         await channel.send({content: `Match ${this.matchNumber}`, embeds: [matchFinalEmbed(game!, this.users)]});
     }
 
@@ -1367,7 +1368,7 @@ export class GameController {
     }
 
     async sendAbandonMessage(userId: string) {
-        const guild = await this.client.guilds.fetch(tokens.GuildID);
+        const guild = await this.client.guilds.fetch(discordTokens.GuildId);
         if (this.state == 10) {
             const channel = await this.guild.channels.fetch(this.acceptChannelId) as TextChannel;
             await channel.send(`<@&${this.matchRoleId}> <@${userId}> has failed to accept the match. You have been placed in queue for 15 minutes`);

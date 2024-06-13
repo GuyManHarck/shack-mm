@@ -2,10 +2,12 @@ import {Button} from "../interfaces/Button";
 import {ButtonBuilder} from "@discordjs/builders";
 import {ButtonStyle} from "discord.js";
 import {logError} from "../loggers";
-import tokens from "../tokens";
 import {getUserByUser} from "../modules/getters/getUser";
 import {Regions} from "../database/models/UserModel";
 import {updateUser} from "../modules/updaters/updateUser";
+import discordTokens from "../config/discordTokens";
+
+const regionRoles = [discordTokens.RegionRoles.NAE, discordTokens.RegionRoles.NAW, discordTokens.RegionRoles.EUE, discordTokens.RegionRoles.EUW, discordTokens.RegionRoles.APAC]
 
 export const NAE: Button = {
     data: new ButtonBuilder()
@@ -17,7 +19,7 @@ export const NAE: Button = {
             const member = await interaction.guild!.members.fetch(interaction.user.id);
             let hasRole = false;
             for (let role of member.roles.cache.values()) {
-                if (tokens.RegionRoleArray.includes(role.id)) {
+                if (regionRoles.includes(role.id)) {
                     hasRole = true;
                     break;
                 }
@@ -25,7 +27,7 @@ export const NAE: Button = {
             if (hasRole) {
                 await interaction.reply({ephemeral: true, content: "You have already selected a role, please make a ticket to change it"});
             } else {
-                await member.roles.add(tokens.RegionRoles.NAE);
+                await member.roles.add(discordTokens.RegionRoles.NAE);
                 const dbUser = await getUserByUser(interaction.user, data);
                 dbUser.region = Regions.NAE;
                 await updateUser(dbUser, data);
@@ -48,7 +50,7 @@ export const NAW: Button = {
             const member = await interaction.guild!.members.fetch(interaction.user.id);
             let hasRole = false;
             for (let role of member.roles.cache.values()) {
-                if (tokens.RegionRoleArray.includes(role.id)) {
+                if (regionRoles.includes(role.id)) {
                     hasRole = true;
                     break;
                 }
@@ -56,7 +58,7 @@ export const NAW: Button = {
             if (hasRole) {
                 await interaction.reply({ephemeral: true, content: "You have already selected a role, please make a ticket to change it"});
             } else {
-                await member.roles.add(tokens.RegionRoles.NAW);
+                await member.roles.add(discordTokens.RegionRoles.NAW);
                 const dbUser = await getUserByUser(interaction.user, data);
                 dbUser.region = Regions.NAW;
                 await updateUser(dbUser, data);
@@ -79,7 +81,7 @@ export const EUE: Button = {
             const member = await interaction.guild!.members.fetch(interaction.user.id);
             let hasRole = false;
             for (let role of member.roles.cache.values()) {
-                if (tokens.RegionRoleArray.includes(role.id)) {
+                if (regionRoles.includes(role.id)) {
                     hasRole = true;
                     break;
                 }
@@ -87,7 +89,7 @@ export const EUE: Button = {
             if (hasRole) {
                 await interaction.reply({ephemeral: true, content: "You have already selected a role, please make a ticket to change it"});
             } else {
-                await member.roles.add(tokens.RegionRoles.EUE);
+                await member.roles.add(discordTokens.RegionRoles.EUE);
                 const dbUser = await getUserByUser(interaction.user, data);
                 dbUser.region = Regions.EUE;
                 await updateUser(dbUser, data);
@@ -110,7 +112,7 @@ export const EUW: Button = {
             const member = await interaction.guild!.members.fetch(interaction.user.id);
             let hasRole = false;
             for (let role of member.roles.cache.values()) {
-                if (tokens.RegionRoleArray.includes(role.id)) {
+                if (regionRoles.includes(role.id)) {
                     hasRole = true;
                     break;
                 }
@@ -118,7 +120,7 @@ export const EUW: Button = {
             if (hasRole) {
                 await interaction.reply({ephemeral: true, content: "You have already selected a role, please make a ticket to change it"});
             } else {
-                await member.roles.add(tokens.RegionRoles.EUW);
+                await member.roles.add(discordTokens.RegionRoles.EUW);
                 const dbUser = await getUserByUser(interaction.user, data);
                 dbUser.region = Regions.EUW;
                 await updateUser(dbUser, data);
@@ -141,7 +143,7 @@ export const APAC: Button = {
             const member = await interaction.guild!.members.fetch(interaction.user.id);
             let hasRole = false;
             for (let role of member.roles.cache.values()) {
-                if (tokens.RegionRoleArray.includes(role.id)) {
+                if (regionRoles.includes(role.id)) {
                     hasRole = true;
                     break;
                 }
@@ -149,7 +151,7 @@ export const APAC: Button = {
             if (hasRole) {
                 await interaction.reply({ephemeral: true, content: "You have already selected a role, please make a ticket to change it"});
             } else {
-                await member.roles.add(tokens.RegionRoles.APAC);
+                await member.roles.add(discordTokens.RegionRoles.APAC);
                 const dbUser = await getUserByUser(interaction.user, data);
                 dbUser.region = Regions.APAC;
                 await updateUser(dbUser, data);

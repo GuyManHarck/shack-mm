@@ -1,9 +1,10 @@
 import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {TextChannel} from "discord.js";
 import {regionSelectView, signUpView, sndFILLReadyView, SNDFILLReadyView2} from "../../views/staticViews";
+import discordTokens from "../../config/discordTokens";
 
 export const prepare: Command = {
     data: new SlashCommandBuilder()
@@ -64,5 +65,5 @@ export const prepare: Command = {
         }
     },
     name: 'prepare',
-    allowedUsers: [tokens.Parl],
+    allowedUsers: [discordTokens.BotOwner],
 }

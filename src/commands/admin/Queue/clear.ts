@@ -2,7 +2,8 @@ import {SubCommand} from "../../../interfaces/Command";
 import {SlashCommandSubcommandBuilder} from "discord.js";
 import {logError} from "../../../loggers";
 import {queues} from "../../../utility/options";
-import tokens from "../../../tokens";
+import tokens from "../../../config/tokens";
+import discordTokens from "../../../config/discordTokens";
 
 export const clear: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -18,5 +19,5 @@ export const clear: SubCommand = {
         }
     },
     name: 'clear',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

@@ -1,10 +1,11 @@
 import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {userOption} from "../../utility/options";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {autoLate} from "../../utility/punishment";
 import {getUserByUser} from "../../modules/getters/getUser";
+import discordTokens from "../../config/discordTokens";
 
 export const late: Command = {
     data: new SlashCommandBuilder()
@@ -25,5 +26,5 @@ export const late: Command = {
         }
     },
     name: "late",
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

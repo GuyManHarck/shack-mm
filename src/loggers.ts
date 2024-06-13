@@ -1,10 +1,11 @@
 import {Client, Colors, EmbedBuilder, EmbedField, Interaction, TextChannel} from "discord.js";
-import tokens from './tokens';
+import tokens from './config/tokens';
+import discordTokens from "./config/discordTokens";
 
 
 export async function logError(error: any, interaction: Interaction) {
-    const guild = await interaction.client.guilds.fetch(tokens.MasterGuild);
-    const channel = await guild.channels.fetch(tokens.LogChannel) as TextChannel;
+    const guild = await interaction.client.guilds.fetch(discordTokens.MasterGuild);
+    const channel = await guild.channels.fetch(discordTokens.LogChannel) as TextChannel;
     let embed = new EmbedBuilder();
     embed.setTitle('ERROR');
     embed.setColor(Colors.Red);
@@ -102,8 +103,8 @@ export async function logError(error: any, interaction: Interaction) {
 }
 
 export async function logInfo(message: string, client: Client) {
-    const guild = await client.guilds.fetch(tokens.MasterGuild);
-    const channel = await guild.channels.fetch(tokens.LogChannel) as TextChannel;
+    const guild = await client.guilds.fetch(discordTokens.MasterGuild);
+    const channel = await guild.channels.fetch(discordTokens.LogChannel) as TextChannel;
     let embed = new EmbedBuilder();
     embed.setTitle('INFO');
     embed.setColor(Colors.Green);
@@ -118,8 +119,8 @@ export async function logInfo(message: string, client: Client) {
 }
 
 export async function logWarn(warning: string, client: Client) {
-    const guild = await client.guilds.fetch(tokens.MasterGuild);
-    const channel = await guild.channels.fetch(tokens.LogChannel) as TextChannel;
+    const guild = await client.guilds.fetch(discordTokens.MasterGuild);
+    const channel = await guild.channels.fetch(discordTokens.LogChannel) as TextChannel;
     let embed = new EmbedBuilder();
     embed.setTitle('WARN');
     embed.setColor(Colors.Yellow);

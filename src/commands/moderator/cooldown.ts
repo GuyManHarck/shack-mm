@@ -1,7 +1,7 @@
 import {SubCommand} from "../../interfaces/Command";
 import {reason, userOption} from "../../utility/options";
 import {logError} from "../../loggers";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import moment from "moment";
 import {getUserByUser} from "../../modules/getters/getUser";
 import {grammaticalTime} from "../../utility/grammatical";
@@ -9,6 +9,7 @@ import {createActionUser} from "../../modules/constructors/createAction";
 import {Actions} from "../../database/models/ActionModel";
 import {SlashCommandStringOption, SlashCommandSubcommandBuilder} from "discord.js";
 import {punishment} from "../../utility/punishment";
+import discordTokens from "../../config/discordTokens";
 
 export const cooldown: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -53,5 +54,5 @@ export const cooldown: SubCommand = {
         }
     },
     name: 'cooldown',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

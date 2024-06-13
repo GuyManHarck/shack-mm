@@ -7,7 +7,7 @@ import {makeTeams} from "./utility/makeTeams"
 import {getCounter} from "./modules/getters/getCounter";
 import {createGame} from "./modules/constructors/createGame";
 import {ObjectId} from "mongoose";
-import tokens from "./tokens";
+import tokens from "./config/tokens";
 import {InternalResponse} from "./interfaces/Internal";
 import moment from "moment";
 import {GameController} from "./controllers/GameController";
@@ -20,6 +20,7 @@ import {getRank, roleRemovalCallback} from "./utility/ranking";
 import {updateUser} from "./modules/updaters/updateUser";
 import {GameServer} from "./server/server";
 import SaveModel from "./database/models/SaveModel";
+import discordTokens from "./config/discordTokens";
 
 export class Data {
     private readonly client: Client;
@@ -60,12 +61,12 @@ export class Data {
     private async banReductionTask() {
         const now = moment().unix()
         const users = await userModel.find({}) as UserInt[];
-        const guild = await this.client.guilds.fetch(tokens.GuildID);
+        const guild = await this.client.guilds.fetch(discordTokens.GuildId);
         for (let user of users) {
             if (user.muteUntil <= now && user.muteUntil > 0) {
                 try {
                     const member = await guild.members.fetch(user.id);
-                    await member.roles.remove(tokens.MutedRole);
+                    await member.roles.remove(discordTokens.MutedRole);
                 } catch (e) {
                     await logWarn("User is no longer in server", this.client);
                 }
@@ -126,7 +127,7 @@ export class Data {
 
     async updateRoles() {
         const users = await UserModel.find({});
-        const guild = await this.client.guilds!.fetch(tokens.GuildID);
+        const guild = await this.client.guilds!.fetch(discordTokens.GuildId);
         for (let user of users) {
             const stats = await getStats(user._id,  "SND");
             const member = await guild.members.fetch(user.id);
@@ -181,11 +182,11 @@ export class Data {
             await this.save();
             this.tickCount++;
             if (!this.statusChannel || this.tickCount % 60 == 0) {
-                const guild = await this.client.guilds.fetch(tokens.GuildID);
-                this.statusChannel = await guild.channels.fetch(tokens.ActiveGamesChannel) as VoiceChannel;
+                const guild = await this.client.guilds.fetch(discordTokens.GuildId);
+                this.statusChannel = await guild.channels.fetch(discordTokens.ActiveGamesChannel) as VoiceChannel;
             }
             if (this.FILL_SND.inQueueNumber() >= tokens.PlayerCount) {
-                await this.createMatch("NA", this.FILL_SND, 'SND', tokens.ScoreLimitSND);
+                await this.createMatch("NA", this.FILL_SND, 'SND', tokens.ScoreLimit);
             }
             await this.FILL_SND.tick()
             const check = `${this.FILL_SND.inQueueNumber()} in q`;
@@ -201,8 +202,8 @@ export class Data {
                 await this.statusChannel!.setName(active);
             }
             if (this.Leaderboard.changed) {
-                const channel = await this.client.channels.fetch(tokens.LeaderboardChannel) as TextChannel;
-                const message = await channel.messages.fetch(tokens.LeaderboardMessage);
+                const channel = await this.client.channels.fetch(discordTokens.LeaderboardChannel) as TextChannel;
+                const message = await channel.messages.fetch(discordTokens.LeaderboardMessage);
                 await message.edit({content: this.Leaderboard.leaderboardCacheSND, components: []});
                 this.Leaderboard.changed = false;
             }
@@ -265,7 +266,7 @@ export class Data {
                     serv = server;
                 }
             }
-            let game = new GameController(dbGame._id, this.client, await this.client.guilds.fetch(tokens.GuildID), gameNum, teams.teamA, teams.teamB, queueId, scoreLimit, this.FILL_SND.lastPlayedMaps, this, serv);
+            let game = new GameController(dbGame._id, this.client, await this.client.guilds.fetch(discordTokens.GuildId), gameNum, teams.teamA, teams.teamB, queueId, scoreLimit, this.FILL_SND.lastPlayedMaps, this, serv);
             queue.addGame(game);
         } catch (e) {
             console.error(e);
@@ -309,7 +310,7 @@ export class Data {
             return {success: false, message: "You need to set a name using `/register` before queueing"};
         }
         if (!dbUser.region) {
-            return {success: false, message: `You must set a region in <#${tokens.RegionSelect}> before you can play`}
+            return {success: false, message: `You must set a region in <#${discordTokens.RegionSelectChannel}> before you can play`}
         }
         if (!this.locked.get(queueId)) {
             const controller = this.getQueue();

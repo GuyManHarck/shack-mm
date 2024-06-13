@@ -4,7 +4,7 @@ import {ButtonStyle} from "discord.js";
 import {logError} from "../../loggers";
 import {getUserByUser} from "../../modules/getters/getUser";
 import axios from "axios";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 
 export const resetSND: Button = {
     data: new ButtonBuilder()

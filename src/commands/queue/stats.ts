@@ -1,11 +1,12 @@
 import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {userOption} from "../../utility/options";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {getUserByUser} from "../../modules/getters/getUser";
 import {getStats} from "../../modules/getters/getStats";
 import {statsEmbed} from "../../embeds/statsEmbed";
+import discordTokens from "../../config/discordTokens";
 
 export const stats: Command = {
     data: new SlashCommandBuilder()
@@ -34,5 +35,5 @@ export const stats: Command = {
         }
     },
     name: 'stats',
-    allowedChannels: [tokens.SNDChannel],
+    allowedChannels: [discordTokens.QueueChannel],
 }

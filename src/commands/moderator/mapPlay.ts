@@ -1,8 +1,9 @@
 import {SubCommand} from "../../interfaces/Command";
 import {logError} from "../../loggers";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import GameModel from "../../database/models/GameModel";
 import {Collection, SlashCommandSubcommandBuilder} from "discord.js";
+import discordTokens from "../../config/discordTokens";
 
 export const mapPlay: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -32,5 +33,5 @@ export const mapPlay: SubCommand = {
         }
     },
     name: "play_rates",
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

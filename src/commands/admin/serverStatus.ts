@@ -1,7 +1,8 @@
 import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {logError} from "../../loggers";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
+import discordTokens from "../../config/discordTokens";
 
 export const serverStatus: Command = {
     data: new SlashCommandBuilder()
@@ -20,6 +21,6 @@ export const serverStatus: Command = {
         }
     },
     name: 'server_status',
-    allowedUsers: [tokens.Parl],
-    allowedRoles: tokens.Mods,
+    allowedUsers: [discordTokens.BotOwner],
+    allowedRoles: discordTokens.Admins,
 }

@@ -1,13 +1,14 @@
 import {SubCommand} from "../../interfaces/Command";
 import {userOption} from "../../utility/options";
 import {logError} from "../../loggers";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {getUserByUser} from "../../modules/getters/getUser";
 import ActionModel from "../../database/models/ActionModel";
 import {ActionEmbed} from "../../embeds/ModEmbeds";
 import WarnModel from "../../database/models/WarnModel";
 import {warningEmbeds} from "../../embeds/statsEmbed";
 import {SlashCommandBooleanOption, SlashCommandSubcommandBuilder} from "discord.js";
+import discordTokens from "../../config/discordTokens";
 
 export const actions: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -35,5 +36,5 @@ export const actions: SubCommand = {
         }
     },
     name: "actions",
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

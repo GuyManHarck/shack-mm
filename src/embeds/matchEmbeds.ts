@@ -1,6 +1,6 @@
 import {EmbedBuilder} from "discord.js";
 import {GameUser} from "../interfaces/Game";
-import tokens from "../tokens";
+import tokens from "../config/tokens";
 import {GameInt} from "../database/models/GameModel";
 import {getUserById} from "../modules/getters/getUser";
 import {GameController} from "../controllers/GameController";

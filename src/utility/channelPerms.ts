@@ -1,5 +1,6 @@
 import {OverwriteResolvable, PermissionsBitField, Role} from "discord.js";
-import tokens from "../tokens";
+import tokens from "../config/tokens";
+import discordTokens from "../config/discordTokens";
 
 
 export const getAcceptPerms = (acceptRole: Role | string): OverwriteResolvable[] => {
@@ -38,7 +39,7 @@ export const getMatchPerms = (role: Role | string): OverwriteResolvable[] => {
 }
 
 const modPerms: OverwriteResolvable = {
-        id: tokens.ModRole,
+        id: discordTokens.ModRole,
         allow: [
             PermissionsBitField.Flags.SendMessages,
             PermissionsBitField.Flags.ReadMessageHistory,
@@ -53,7 +54,7 @@ const modPerms: OverwriteResolvable = {
 }
 
 const denyEverybody: OverwriteResolvable = {
-        id: tokens.GuildID,
+        id: discordTokens.GuildId,
         deny:
             [
                 PermissionsBitField.Flags.ViewChannel,

@@ -2,10 +2,14 @@ import {SubCommand} from "../../interfaces/Command";
 import {userOption} from "../../utility/options";
 import {SlashCommandStringOption, SlashCommandSubcommandBuilder} from "discord.js";
 import {logError} from "../../loggers";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {getUserByUser} from "../../modules/getters/getUser";
 import {Regions} from "../../database/models/UserModel";
 import {updateUser} from "../../modules/updaters/updateUser";
+import discordTokens from "../../config/discordTokens";
+
+const regionRoles = [discordTokens.RegionRoles.NAE, discordTokens.RegionRoles.NAW, discordTokens.RegionRoles.EUE, discordTokens.RegionRoles.EUW, discordTokens.RegionRoles.APAC]
+
 
 export const setRegion: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -37,17 +41,17 @@ export const setRegion: SubCommand = {
         try {
             const member = await interaction.guild!.members.fetch(interaction.options.getUser('user', true));
             for (let role of member.roles.cache.keys()) {
-                if (tokens.RegionRoleArray.includes(role)) {
+                if (regionRoles.includes(role)) {
                     await member.roles.remove(role);
                 }
             }
             const dbUser = await getUserByUser(interaction.options.getUser('user', true), data);
             switch (interaction.options.getString('region', true)) {
-                case "NAE": dbUser.region = Regions.NAE; await member.roles.add(tokens.RegionRoles.NAE); break;
-                case "NAW": dbUser.region = Regions.NAW; await member.roles.add(tokens.RegionRoles.NAW); break;
-                case "EUE": dbUser.region = Regions.EUE; await member.roles.add(tokens.RegionRoles.EUE); break;
-                case "EUW": dbUser.region = Regions.EUW; await member.roles.add(tokens.RegionRoles.EUW); break;
-                case "APAC": dbUser.region = Regions.APAC; await member.roles.add(tokens.RegionRoles.APAC); break;
+                case "NAE": dbUser.region = Regions.NAE; await member.roles.add(discordTokens.RegionRoles.NAE); break;
+                case "NAW": dbUser.region = Regions.NAW; await member.roles.add(discordTokens.RegionRoles.NAW); break;
+                case "EUE": dbUser.region = Regions.EUE; await member.roles.add(discordTokens.RegionRoles.EUE); break;
+                case "EUW": dbUser.region = Regions.EUW; await member.roles.add(discordTokens.RegionRoles.EUW); break;
+                case "APAC": dbUser.region = Regions.APAC; await member.roles.add(discordTokens.RegionRoles.APAC); break;
             }
             await updateUser(dbUser, data);
             await interaction.reply({ephemeral: true, content: "updated user's region"});
@@ -56,5 +60,5 @@ export const setRegion: SubCommand = {
         }
     },
     name: "set_region",
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

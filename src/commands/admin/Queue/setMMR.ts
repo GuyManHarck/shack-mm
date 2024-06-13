@@ -4,8 +4,9 @@ import {userOption} from "../../../utility/options";
 import {logError} from "../../../loggers";
 import {getUserByUser} from "../../../modules/getters/getUser";
 import {getStats} from "../../../modules/getters/getStats";
-import tokens from "../../../tokens";
+import tokens from "../../../config/tokens";
 import {updateStats} from "../../../modules/updaters/updateStats";
+import discordTokens from "../../../config/discordTokens";
 
 export const setMMR: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -35,5 +36,5 @@ export const setMMR: SubCommand = {
         }
     },
     name: 'set_mmr',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

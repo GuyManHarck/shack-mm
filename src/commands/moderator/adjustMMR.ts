@@ -4,8 +4,9 @@ import {logError} from "../../loggers";
 import {getUserByUser} from "../../modules/getters/getUser";
 import {getStats} from "../../modules/getters/getStats";
 import {updateStats} from "../../modules/updaters/updateStats";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {SlashCommandSubcommandBuilder} from "discord.js";
+import discordTokens from "../../config/discordTokens";
 
 export const adjustMMR: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -29,5 +30,5 @@ export const adjustMMR: SubCommand = {
         }
     },
     name: 'adjust_mmr',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

@@ -2,7 +2,8 @@ import {SubCommand} from "../../interfaces/Command";
 import {SlashCommandStringOption, SlashCommandSubcommandBuilder} from "discord.js";
 import {userOption} from "../../utility/options";
 import {logError} from "../../loggers";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
+import discordTokens from "../../config/discordTokens";
 
 export const easyTime: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -33,5 +34,5 @@ export const easyTime: SubCommand = {
         }
     },
     name: 'easy_time',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

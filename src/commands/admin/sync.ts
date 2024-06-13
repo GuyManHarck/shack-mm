@@ -2,9 +2,10 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { Command } from "../../interfaces/Command";
 import {logError} from "../../loggers";
 import { REST } from "@discordjs/rest";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {CommandList} from "../_CommandList";
 import { Routes } from "discord-api-types/v9";
+import discordTokens from "../../config/discordTokens";
 
 export const sync: Command = {
     data: new SlashCommandBuilder()
@@ -19,7 +20,7 @@ export const sync: Command = {
             const commandData = CommandList.map((command) => command.data.toJSON());
             await rest.put(
                 Routes.applicationGuildCommands(
-                    tokens.ClientID,
+                    tokens.ClientId,
                     interaction.guildId as string
                 ),
                 { body: commandData }
@@ -30,5 +31,5 @@ export const sync: Command = {
         }
     },
     name: 'sync',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

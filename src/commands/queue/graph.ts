@@ -1,11 +1,12 @@
 import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {games, userOptional} from "../../utility/options";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {getUserByUser} from "../../modules/getters/getUser";
 import {getStats} from "../../modules/getters/getStats";
 import {getMMRGraph} from "../../utility/graph";
+import discordTokens from "../../config/discordTokens";
 
 export const graph: Command = {
     data: new SlashCommandBuilder()
@@ -47,6 +48,6 @@ export const graph: Command = {
         }
     },
     name: 'graph',
-    allowedRoles: [tokens.Player],
-    allowedChannels: [tokens.SNDChannel]
+    allowedRoles: [discordTokens.PlayerRole],
+    allowedChannels: [discordTokens.QueueChannel]
 }

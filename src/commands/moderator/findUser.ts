@@ -1,9 +1,10 @@
 import {SubCommand} from "../../interfaces/Command";
 import {SlashCommandStringOption, SlashCommandSubcommandBuilder} from "discord.js";
 import {logError} from "../../loggers";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import UserModel, {UserInt} from "../../database/models/UserModel";
 import {getEditDistance} from "../../utility/grammatical";
+import discordTokens from "../../config/discordTokens";
 
 export const findUser: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -34,5 +35,5 @@ export const findUser: SubCommand = {
         }
     },
     name: 'find_user',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

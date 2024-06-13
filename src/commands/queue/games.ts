@@ -1,8 +1,9 @@
 import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {gameEmbed} from "../../embeds/matchEmbeds";
+import discordTokens from "../../config/discordTokens";
 
 export const games: Command = {
     data: new SlashCommandBuilder()
@@ -21,5 +22,5 @@ export const games: Command = {
         }
     },
     name: "games",
-    allowedChannels: [tokens.SNDChannel]
+    allowedChannels: [discordTokens.QueueChannel]
 }

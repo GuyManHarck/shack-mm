@@ -1,5 +1,5 @@
 import { Client } from "discord.js";
-import tokens from './tokens';
+import tokens from './config/tokens';
 import {IntentOptions, PartialsOptions} from './config/IntentOptions';
 import { onInteraction } from "./events/onInteraction";
 import {onReady} from "./events/onReady";

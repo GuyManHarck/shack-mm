@@ -1,13 +1,14 @@
 import {SubCommand} from "../../interfaces/Command";
 import { SlashCommandSubcommandBuilder, SlashCommandStringOption } from "discord.js";
 import {timeOption, timeScales, userOption} from "../../utility/options";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {getUserByUser} from "../../modules/getters/getUser";
 import moment from "moment";
 import {updateUser} from "../../modules/updaters/updateUser";
 import {grammaticalTime} from "../../utility/grammatical";
 import warnModel from "../../database/models/WarnModel";
+import discordTokens from "../../config/discordTokens";
 
 export const mute: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -41,19 +42,19 @@ export const mute: SubCommand = {
             if (time < 0) {
                 dbUser.muteUntil = -1;
                 await updateUser(dbUser, data);
-                await member.roles.add(tokens.MutedRole);
+                await member.roles.add(discordTokens.MutedRole);
                 reason = `Muted indefinitely because: ${reason}`;
                 await interaction.reply({ephemeral: true, content: `<@${user.id}> has been muted indefinitely`});
             } else if (time == 0) {
                 dbUser.muteUntil = moment().unix() + time * multiplier;
                 await updateUser(dbUser, data);
-                await member.roles.remove(tokens.MutedRole);
+                await member.roles.remove(discordTokens.MutedRole);
                 reason = `Un-muted because: ${reason}`;
                 await interaction.reply({ephemeral: true, content: `<@${user.id}> has been un-muted`});
             } else {
                 dbUser.muteUntil = moment().unix() + time * multiplier;
                 await updateUser(dbUser, data);
-                await member.roles.add(tokens.MutedRole);
+                await member.roles.add(discordTokens.MutedRole);
                 muteMessage = `<@${user.id}> has been muted for ${grammaticalTime(muteDuration)}`;
                 reason = `Muted for ${time} ${durationText} because: ${reason}`;
                 await interaction.reply({ ephemeral: true, content: muteMessage });
@@ -70,5 +71,5 @@ export const mute: SubCommand = {
         }
     },
     name: 'mute',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

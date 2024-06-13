@@ -3,7 +3,7 @@ import {ButtonBuilder} from "@discordjs/builders";
 import {ButtonStyle} from "discord.js";
 import {RateLimiter} from "discord.js-rate-limiter";
 import {logError} from "../loggers";
-import tokens from "../tokens";
+import discordTokens from "../config/discordTokens";
 
 export const p2pToggle: Button = {
     data: new ButtonBuilder()
@@ -13,11 +13,11 @@ export const p2pToggle: Button = {
     run: async (interaction) => {
         try{
             const member = await interaction.guild!.members.fetch(interaction.user.id);
-            if (member.roles.cache.has(tokens.PingToPlayRole)) {
-                await member.roles.remove(tokens.PingToPlayRole);
+            if (member.roles.cache.has(discordTokens.PingToPlayRole)) {
+                await member.roles.remove(discordTokens.PingToPlayRole);
                 await interaction.reply({ephemeral: true, content: "Ping to Play role removed"});
             } else {
-                await member.roles.add(tokens.PingToPlayRole);
+                await member.roles.add(discordTokens.PingToPlayRole);
                 await interaction.reply({ephemeral: true, content: "Ping to Play role added"});
             }
         } catch (e) {

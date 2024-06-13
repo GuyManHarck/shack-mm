@@ -2,7 +2,8 @@ import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {SlashCommandStringOption} from "discord.js";
 import {logError} from "../../loggers";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
+import discordTokens from "../../config/discordTokens";
 
 export const unregisterServer: Command = {
     data: new SlashCommandBuilder()
@@ -38,5 +39,5 @@ export const unregisterServer: Command = {
         }
     },
     name: "unregister_server",
-    allowedRoles: tokens.Mods
+    allowedRoles: discordTokens.Moderators
 }

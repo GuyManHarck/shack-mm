@@ -1,12 +1,13 @@
 import {SubCommand} from "../../interfaces/Command";
 import {reason, userOption} from "../../utility/options";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {createActionUser} from "../../modules/constructors/createAction";
 import {Actions} from "../../database/models/ActionModel";
 import {getUserByUser} from "../../modules/getters/getUser";
 import {updateUser} from "../../modules/updaters/updateUser";
 import {SlashCommandSubcommandBuilder} from "discord.js";
+import discordTokens from "../../config/discordTokens";
 
 export const removeCooldown: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -26,5 +27,5 @@ export const removeCooldown: SubCommand = {
         }
     },
     name: 'remove_cooldown',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

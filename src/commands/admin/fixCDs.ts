@@ -1,9 +1,10 @@
 import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import UserModel from "../../database/models/UserModel";
 import {updateUser} from "../../modules/updaters/updateUser";
+import discordTokens from "../../config/discordTokens";
 
 export const fixCDs: Command = {
     data: new SlashCommandBuilder()
@@ -24,5 +25,5 @@ export const fixCDs: Command = {
         }
     },
     name: "fix_counters",
-    allowedUsers: [tokens.Parl],
+    allowedUsers: [discordTokens.BotOwner],
 }

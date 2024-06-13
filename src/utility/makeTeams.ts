@@ -1,5 +1,5 @@
 import {ids, QueueUser} from "../interfaces/Game";
-import tokens from "../tokens";
+import tokens from "../config/tokens";
 
 export function shuffleArray(array: any[]) {
     for (let i = array.length - 1; i > 0; i--) {

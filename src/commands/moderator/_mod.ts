@@ -2,7 +2,7 @@ import {Command, SubCommand} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {Collection} from "discord.js";
 import {logError} from "../../loggers";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {actions} from "./actions";
 import {adjustMMR} from "./adjustMMR";
 import {cooldown} from "./cooldown";
@@ -26,6 +26,7 @@ import {warnRemove} from "./warnRemove";
 import {onSubCommand} from "../../events/onSubCommand";
 import {commandPermission} from "../../utility/commandPermission";
 import {mute} from "./mute";
+import discordTokens from "../../config/discordTokens";
 
 const subCommandListTemp: SubCommand[] = [actions, adjustMMR, cooldown, easyTime, findUser, forceAbandon, forceScore, freeze, mapPlay, nullify,
     rankDist, removeCooldown, reverseCooldown, scoreDist, setMMR, setRegion, transferUser, warn, warnings, warnRemove, mute];
@@ -70,5 +71,5 @@ export const _mod: Command = {
         }
     },
     name: 'mod',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

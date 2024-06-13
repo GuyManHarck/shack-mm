@@ -1,11 +1,12 @@
 import {getUserByUser} from "../modules/getters/getUser";
 import {ButtonInteraction, ChatInputCommandInteraction, Client, EmbedBuilder, TextChannel} from "discord.js";
 import {Data} from "../data";
-import tokens from "../tokens";
+import tokens from "../config/tokens";
+import discordTokens from "../config/discordTokens";
 
 
 export const logReady = async (userId: string, queueLabel: string, time: number, client: Client) => {
-    const channel = await client.channels.fetch(tokens.QueueLogChannel) as TextChannel;
+    const channel = await client.channels.fetch(discordTokens.QueueLogChannel) as TextChannel;
     const embed = new EmbedBuilder();
     embed.setTitle("User has readied");
     embed.setDescription(`<@${userId}> has readied up in ${queueLabel} for ${time} minutes`);
@@ -13,7 +14,7 @@ export const logReady = async (userId: string, queueLabel: string, time: number,
 }
 
 export const logUnready = async (userId: string, queueLabel: string, client: Client) => {
-    const channel = await client.channels.fetch(tokens.QueueLogChannel) as TextChannel;
+    const channel = await client.channels.fetch(discordTokens.QueueLogChannel) as TextChannel;
     const embed = new EmbedBuilder();
     embed.setTitle("User has unreadied");
     embed.setDescription(`<@${userId}> has unreadied up in ${queueLabel}`);
@@ -21,7 +22,7 @@ export const logUnready = async (userId: string, queueLabel: string, client: Cli
 }
 
 export const logAccept = async (userId: string, matchId: number, client: Client) => {
-    const channel = await client.channels.fetch(tokens.GameLogChannel) as TextChannel;
+    const channel = await client.channels.fetch(discordTokens.GameLogChannel) as TextChannel;
     const embed = new EmbedBuilder();
     embed.setTitle("User has accepted");
     embed.setDescription(`<@${userId}> has accepted match ${matchId}`);
@@ -29,7 +30,7 @@ export const logAccept = async (userId: string, matchId: number, client: Client)
 }
 
 export const logScoreSubmit = async (userId: string, matchId: number, score: number, client: Client) => {
-    const channel = await client.channels.fetch(tokens.GameLogChannel) as TextChannel;
+    const channel = await client.channels.fetch(discordTokens.GameLogChannel) as TextChannel;
     const embed = new EmbedBuilder();
     embed.setTitle("User has Submitted a score");
     embed.setDescription(`<@${userId}> has submitted a score of ${score} for match ${matchId}`);

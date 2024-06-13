@@ -2,7 +2,8 @@ import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {CategoryChannel, SlashCommandChannelOption} from "discord.js";
 import {logError} from "../../loggers";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
+import discordTokens from "../../config/discordTokens";
 
 export const categoryDelete: Command = {
     data: new SlashCommandBuilder()
@@ -25,6 +26,6 @@ export const categoryDelete: Command = {
         }
     },
     name: 'category_delete',
-    allowedUsers: [tokens.Parl],
-    allowedRoles: tokens.Mods,
+    allowedUsers: [discordTokens.BotOwner],
+    allowedRoles: discordTokens.Moderators,
 }

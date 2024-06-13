@@ -7,7 +7,8 @@ import {info} from "./info";
 import {lock} from "./lock";
 import {reCalc} from "./reCalc";
 import {remove} from "./remove";
-import tokens from "../../../tokens";
+import tokens from "../../../config/tokens";
+import discordTokens from "../../../config/discordTokens";
 
 const subCommandListTemp: SubCommand[] = [clear, info, lock, reCalc, remove]
 let SubCommandMap: Collection<string, SubCommand> = new Collection<string, SubCommand>();
@@ -34,5 +35,5 @@ export const _queue: Command = {
         }
     },
     name: 'queue',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

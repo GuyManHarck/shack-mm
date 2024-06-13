@@ -1,10 +1,11 @@
 import {SubCommand} from "../../interfaces/Command";
 import {logError} from "../../loggers";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import StatsModel from "../../database/models/StatsModel";
 import {Collection, SlashCommandSubcommandBuilder} from "discord.js";
 import {getRank} from "../../utility/ranking";
 import {getRankDistGraph} from "../../utility/graph";
+import discordTokens from "../../config/discordTokens";
 
 export const rankDist: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -47,5 +48,5 @@ export const rankDist: SubCommand = {
         }
     },
     name: "rank_distribution",
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }

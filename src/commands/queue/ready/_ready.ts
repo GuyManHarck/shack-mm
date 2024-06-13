@@ -4,8 +4,9 @@ import {logError} from "../../../loggers";
 import {Collection} from "discord.js";
 import {commandPermission} from "../../../utility/commandPermission";
 import {onSubCommand} from "../../../events/onSubCommand";
-import tokens from "../../../tokens";
+import tokens from "../../../config/tokens";
 import {fiveVFive} from "./fiveVFive";
+import discordTokens from "../../../config/discordTokens";
 
 // Create list of all commands that are subcommands of caster
 const subCommandList: SubCommand[] = [fiveVFive];
@@ -36,5 +37,5 @@ export const _ready: Command = {
         }
     },
     name: 'ready',
-    allowedRoles: [tokens.Player, tokens.DoNotPing],
+    allowedRoles: [discordTokens.PlayerRole, discordTokens.DoNotPingRole],
 }

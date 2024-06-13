@@ -1,6 +1,6 @@
 import {Command} from "../../interfaces/Command";
 import {SlashCommandBuilder} from "@discordjs/builders";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {getGameByMatchId} from "../../modules/getters/getGame";
 import {logError} from "../../loggers";
 import moment from "moment";
@@ -14,6 +14,7 @@ import {Regions} from "../../database/models/UserModel";
 import {createAction} from "../../modules/constructors/createAction";
 import {Actions} from "../../database/models/ActionModel";
 import {reason} from "../../utility/options";
+import discordTokens from "../../config/discordTokens";
 
 export const manualSubmit: Command = {
     data: new SlashCommandBuilder()
@@ -66,13 +67,13 @@ export const manualSubmit: Command = {
                 const dbUser = await getUserById(user, data);
                 users.push({dbId: user, discordId: dbUser.id, team: 1, accepted: true, region: Regions.APAC, joined: false});
             }
-            const changes = await processMMR(users, [game.scoreA, game.scoreB], "SND", tokens.ScoreLimitSND);
+            const changes = await processMMR(users, [game.scoreA, game.scoreB], "SND", tokens.ScoreLimit);
             game.teamAChanges = changes[0];
             game.teamBChanges = changes[1];
 
             game = await updateGame(game);
 
-            const channel = await interaction.guild!.channels.fetch(tokens.SNDScoreChannel) as TextChannel;
+            const channel = await interaction.guild!.channels.fetch(discordTokens.ScoreChannel) as TextChannel;
 
             await channel.send({content: `Match ${game.matchId}`, embeds: [matchFinalEmbed(game!, users)]});
             await interaction.followUp({ephemeral: true, content: "Game has been submitted"});
@@ -83,5 +84,5 @@ export const manualSubmit: Command = {
         }
     },
     name: 'manual_submit',
-    allowedUsers: [tokens.Parl],
+    allowedUsers: [discordTokens.BotOwner],
 }

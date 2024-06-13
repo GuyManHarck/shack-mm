@@ -1,10 +1,11 @@
 import {SubCommand} from "../../interfaces/Command";
 import {SlashCommandSubcommandBuilder, SlashCommandUserOption} from "discord.js";
-import tokens from "../../tokens";
+import tokens from "../../config/tokens";
 import {logError} from "../../loggers";
 import {getUserByUser} from "../../modules/getters/getUser";
 import {getStats} from "../../modules/getters/getStats";
 import {updateStats} from "../../modules/updaters/updateStats";
+import discordTokens from "../../config/discordTokens";
 
 export const transferUser: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -35,5 +36,5 @@ export const transferUser: SubCommand = {
         }
     },
     name: 'transfer_user',
-    allowedRoles: tokens.Mods,
+    allowedRoles: discordTokens.Moderators,
 }
