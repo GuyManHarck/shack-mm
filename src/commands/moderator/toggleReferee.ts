@@ -5,6 +5,7 @@ import {logError} from "../../loggers";
 import tokens from "../../tokens";
 import {getUserByUser} from "../../modules/getters/getUser";
 import {updateUser} from "../../modules/updaters/updateUser";
+import {EmbedBuilder, TextChannel} from "discord.js";
 
 export const toggleReferee: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -21,6 +22,11 @@ export const toggleReferee: SubCommand = {
             dbUser.referee = interaction.options.getBoolean('is_ref', true);
             await updateUser(dbUser, data);
             await interaction.reply({ephemeral: true, content: `<@${dbUser.id}> ${dbUser.referee ? "is now" : "is no longer"} as referee.`});
+            const channel = await interaction.client.channels.fetch(tokens.ModeratorLogChannel) as TextChannel;
+            const embed = new EmbedBuilder();
+            embed.setTitle(`User ${user.id} has been referee toggled`);
+            embed.setDescription(`<@${dbUser.id}> ${dbUser.referee ? "is now" : "is no longer"} as referee by <@${interaction.user.id}>`);
+            await channel.send({embeds: [embed.toJSON()]});
         } catch (e) {
             await logError(e, interaction);
         }
