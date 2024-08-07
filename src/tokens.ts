@@ -30,6 +30,7 @@ export default {
     ActiveGamesChannel: "1183155071433850960",
     LeaderboardMessage: "1183920824164569130",
     LeaderboardChannel: "1171851273499312159",
+    ReadyUnreadyLogChannel: "1270847165442293864",
     GameLogChannel: "1185432060173746236",
     QueueLogChannel: "1191799332924559360",
     ModeratorLogChannel: "1249964183588438158",
